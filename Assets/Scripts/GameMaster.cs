@@ -33,6 +33,40 @@ public class GameMaster : MonoBehaviour
     public TMP_Text aiScoreText;
     public TMP_Text winnerName;
 
+    [Header("FPS Displayer")]
+    public bool wantsToDisplay;
+    public TMP_Text fpsCounter;
+
+    [Header("FPS Controller")]
+    public bool wantsToCap;
+    public bool defaultFpsCap;
+    public int fpsCap;
+
+    [Header("Version Manager")]
+    public bool isAlpha;
+    public bool isBeta;
+    public bool isPatch;
+    public bool isPreRelease;
+
+    public string firstElement;
+    public string secondElement;
+    public string thirdElement;
+
+    public int patchNumber;
+    public TMP_Text versionText;
+
+    private void Start()
+    {
+        capFps();
+        manageVersion();
+    }
+
+    private void Update()
+    {
+        displayFps();
+    }
+
+    //Gameplay
     public void pauseGame()
     {
         ballVelocity = ball.velocity;
@@ -159,5 +193,99 @@ public class GameMaster : MonoBehaviour
         {
             secondPlayer.gameObject.transform.localPosition = secondPlayer.getPlayerStartingPosition().localPosition;
         }
+    }
+
+
+    //FPS Displayer
+    private void displayFps()
+    {
+        if(wantsToDisplay)
+        {
+            int fps = (int)(1 / Time.unscaledDeltaTime);
+            fpsCounter.text = fps.ToString();
+        }
+    }
+
+    //FPS Controller
+    private void capFps()
+    {
+        if(wantsToCap)
+        {
+            QualitySettings.vSyncCount = 0;
+            if (defaultFpsCap)
+            {
+                Application.targetFrameRate = -1;
+            }
+            else
+            {
+                Application.targetFrameRate = (fpsCap < 15 || fpsCap > 60 ? 60 : fpsCap);
+            }
+        }
+    }
+
+    //Version Manager
+    private void manageVersion()
+    {
+        if(isAlpha)
+        {
+            versionText.text = "v" + firstElement + "." + secondElement + "." + thirdElement + "a";
+
+            if (isPatch)
+            {
+                versionText.text = versionText.text + " Patch " + patchNumber;
+            }
+        }
+        else if(isBeta)
+        {
+            versionText.text = "v" + firstElement + "." + secondElement + "." + thirdElement + "b";
+
+            if (isPatch)
+            {
+                versionText.text = versionText.text + " Patch " + patchNumber;
+            }
+        }
+        else if(isPreRelease)
+        {
+            versionText.text = "(Pre-Release) v" + firstElement + "." + secondElement + "." + thirdElement;
+        }
+        else if(isPatch)
+        {
+            versionText.text = "v" + firstElement + "." + secondElement + "." + thirdElement + " Patch " + patchNumber;
+        }
+        else
+        {
+            versionText.text = "v" + firstElement + "." + secondElement + "." + thirdElement;
+        }
+    }
+
+    //Level Controller
+    IEnumerator loadScene(string sceneName)
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void loadFirstGame()
+    {
+        audioManager.PlaySound("btnClick");
+        StartCoroutine(loadScene("MainGameplay"));
+    }
+
+    public void loadSecondGame()
+    {
+        audioManager.PlaySound("btnClick");
+        StartCoroutine(loadScene("SecondGameplay"));
+    }
+
+    public void loadMainMenu()
+    {
+        audioManager.PlaySound("btnClick");
+        StartCoroutine(loadScene("MainMenu"));
+    }
+
+    public void quitGame()
+    {
+        audioManager.PlaySound("btnClick");
+        Application.Quit();
     }
 }

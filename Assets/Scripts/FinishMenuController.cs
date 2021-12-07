@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 public class FinishMenuController : MonoBehaviour
 {
     public GameMaster gm;
-    public LevelController lc;
 
     public void returnToMenu()
     {
-        lc.loadMainMenu();
+        gm.loadMainMenu();
     }
 
     public void createNewGame()
