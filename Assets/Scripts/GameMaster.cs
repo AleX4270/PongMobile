@@ -74,7 +74,19 @@ public class GameMaster : MonoBehaviour
     public void finishGame(string winner)
     {
         finishMenu.SetActive(true);
-        winnerName.text = "Wygra³ " + (winner == "Komputer" ? "Gracz 2" : winner);
+        if(winner == "Komputer" && secondPlayer != null)
+        {
+            winnerName.text = "Wygra³ " + "Gracz 2";
+        }
+        else if(winner ==  "Komputer" && secondPlayer == null)
+        {
+            winnerName.text = "Wygra³ " + "Komputer";
+        }
+        else
+        {
+            winnerName.text = "Wygra³ " + winner;
+        }
+
         ball.velocity = Vector2.zero;
 
         player.freezePlayer(true);
@@ -89,7 +101,7 @@ public class GameMaster : MonoBehaviour
 
         if (playerScore == finishScore)
         {
-            finishGame("Gracz");
+            finishGame("Gracz 1");
         }
         else
         {

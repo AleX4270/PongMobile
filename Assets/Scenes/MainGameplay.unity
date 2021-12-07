@@ -952,12 +952,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4215519115492079675, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215519115492079675, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
       propertyPath: m_AngularDrag
-      value: 0.97
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4215519115492079675, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4896727205474470188, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
       propertyPath: m_Name
@@ -977,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 195395804}
     - target: {fileID: 7476387567970655682, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
       propertyPath: middleOffset
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ae2bf28cd96bf4896ee2bd92493b01, type: 3}
@@ -1724,6 +1728,7 @@ MonoBehaviour:
   topBarrier: {fileID: 626177776}
   bottomBarrier: {fileID: 2054196371}
   force: 23.7
+  singlePlayer: 1
 --- !u!50 &1262049072
 Rigidbody2D:
   serializedVersion: 4
@@ -3352,7 +3357,7 @@ Transform:
   m_GameObject: {fileID: 2617922733180437895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0006121488, y: 0.0035308402, z: 0}
-  m_LocalScale: {x: 0.019656153, y: 0.03500833, z: 1}
+  m_LocalScale: {x: 0.01404011, y: 0.02500595, z: 1}
   m_Children: []
   m_Father: {fileID: 1628148735}
   m_RootOrder: 6

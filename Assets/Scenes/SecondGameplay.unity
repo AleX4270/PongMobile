@@ -2607,6 +2607,7 @@ MonoBehaviour:
   topBarrier: {fileID: 4080005532217411824}
   bottomBarrier: {fileID: 4080005533372822163}
   force: 23.7
+  singlePlayer: 0
 --- !u!50 &4080005532580669744
 Rigidbody2D:
   serializedVersion: 4
@@ -3230,7 +3231,7 @@ Transform:
   m_GameObject: {fileID: 2074943029197929351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0006121488, y: 0.0035308402, z: 0}
-  m_LocalScale: {x: 0.019656153, y: 0.03500833, z: 1}
+  m_LocalScale: {x: 0.01404011, y: 0.02500595, z: 1}
   m_Children: []
   m_Father: {fileID: 4080005533219401215}
   m_RootOrder: 6
@@ -3337,6 +3338,7 @@ MonoBehaviour:
   topBarrier: {fileID: 4080005532217411824}
   bottomBarrier: {fileID: 4080005533372822163}
   force: 23.7
+  singlePlayer: 0
 --- !u!1 &6937519826523622570
 GameObject:
   m_ObjectHideFlags: 0

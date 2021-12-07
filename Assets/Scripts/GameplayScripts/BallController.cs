@@ -80,7 +80,7 @@ public class BallController : MonoBehaviour
         {
             Vector2 relVel = collision.GetContact(0).relativeVelocity;
             ball.velocity = new Vector2(relVel.x * -1, relVel.y);
-            audioManager.PlaySound("wallHit");
+            //audioManager.PlaySound("wallHit");
                 
         }
     }

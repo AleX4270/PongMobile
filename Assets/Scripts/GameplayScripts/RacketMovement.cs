@@ -23,6 +23,7 @@ public class RacketMovement : MonoBehaviour
     bool playerFreezed;
     [Range(0, 100)]
     public float force;
+    public bool singlePlayer;
 
 
     private void Start()
@@ -33,30 +34,62 @@ public class RacketMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(singlePlayer)
+        {
+            movePlayerSolo();
+        }
+        else
+        {
+            movePlayerMulti();
+        }
+    }
+
+    private void movePlayerSolo()
+    {
         if (Input.touchCount > 0 && !playerFreezed)
         {
             touch = Input.GetTouch(0);
 
-            if(touch.phase == TouchPhase.Moved)
-            {             
+            if (touch.phase == TouchPhase.Moved)
+            {
                 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
                 myPosition = player.position;
 
-                if(Mathf.Abs(player.position.x - touchPos.x) <= 2)
+                if (Mathf.Abs(player.position.x - touchPos.x) <= 2)
                 {
                     myPosition.y = Mathf.Lerp(myPosition.y, touchPos.y, force);
-                    myPosition.y = Mathf.Clamp(myPosition.y, bottomBarrier.position.y + this.gameObject.GetComponent<Collider2D>().bounds.size.y/2,
+                    myPosition.y = Mathf.Clamp(myPosition.y, bottomBarrier.position.y + this.gameObject.GetComponent<Collider2D>().bounds.size.y / 2,
                                                topBarrier.position.y);
 
                     player.position = myPosition;
                 }
             }
         }
-        else
+    }
+
+    private void movePlayerMulti()
+    {
+        if(Input.touchCount > 0 && !playerFreezed)
         {
-            player.constraints = RigidbodyConstraints2D.FreezeAll;
+            for(int i = 0; i < Input.touchCount; i++)
+            {
+                touch = Input.touches[i];
+                if(touch.phase == TouchPhase.Moved)
+                {
+                    touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+                    myPosition = player.position;
+
+                    if(Mathf.Abs(player.position.x - touchPos.x) <= 2)
+                    {
+                        myPosition.y = Mathf.Lerp(myPosition.y, touchPos.y, force);
+                        myPosition.y = Mathf.Clamp(myPosition.y, bottomBarrier.position.y + this.gameObject.GetComponent<Collider2D>().bounds.size.y / 2,
+                                                   topBarrier.position.y);
+
+                        player.position = myPosition;
+                    }
+                }
+            }
         }
-        
     }
 
     public Transform getPlayerStartingPosition()

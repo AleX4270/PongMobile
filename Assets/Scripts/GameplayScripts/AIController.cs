@@ -37,17 +37,7 @@ public class AIController : MonoBehaviour
                 racket.AddForce(Vector2.down * this.racketSpeed);
             }
         }
-        else
-        {
-            if (this.transform.position.y < 0.0f + middleOffset)
-            {
-                racket.AddForce(Vector2.up * this.racketSpeed/4);
-            }
-            else if (this.transform.position.y > 0.0f)
-            {
-                racket.AddForce(Vector2.down * this.racketSpeed/4); 
-            }
-        }
+        
     }
 
     public Transform getAiStartingPosition()
